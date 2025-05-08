@@ -6,6 +6,7 @@
   <title>Foto-3D</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; font-family: sans-serif; }
     header, section, footer { width: 100%; box-sizing: border-box; }
@@ -27,13 +28,11 @@
       transform: translate(-50%, -50%);
       color: black;
     }
-    .hero-text h1 {
-      font-size: 4rem;
-      font-weight: bold;
-    }
-    .hero-text p {
-      font-size: 1.5rem;
-    }
+    .hero-text h1,
+.hero-text p {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
     section { padding: 2rem 1rem; }
     .white { background: white; }
     .color2 { background: #f0f0f5; }
@@ -41,22 +40,26 @@
     h1, h2, h3 { margin-top: 0; }
 
     .iframe-container {
-      width: 600px;
-      height: 400px;
-      margin: 0 auto;
-      background: #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      position: relative;
-    }
+  max-width: 600px;
+  aspect-ratio: 3 / 2; /* 600x400 = 3:2 */
+  width: 100%;
+  margin: 0 auto;
+  background: #ccc;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
 
-    .iframe-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-    }
+.iframe-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+  top: 0;
+  left: 0;
+}
 
     .play-button {
       font-size: 3rem;
@@ -71,7 +74,7 @@
       transform: translate(-50%, -50%);
     }
 
-    footer { background: #ddd; padding: 2rem 1rem; text-align: center; }
+    footer { background: #f0f0f5; padding: 2rem 1rem; text-align: center; }
     .social { margin-top: 1rem; }
     .cta { display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: black; color: white; text-decoration: none; border-radius: 5px; }
     .row { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
@@ -79,6 +82,16 @@
     .col { flex: 1 1 300px; }
     .col img, .col iframe { width: 100%; height: auto; }
     .navbar-brand img { height: 40px; }
+    
+    p {
+  color: #32325d;
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  font-family: 'Open Sans', Segoe UI, Helvetica, Arial, Lucida Grande, sans-serif;
+  -webkit-text-size-adjust: none;
+}
   </style>
 </head>
 <body>
@@ -139,9 +152,9 @@
       </div>
       <div class="col">
         <div class="iframe-container">
-          <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==';">▶</button>
-          <iframe allowfullscreen src=""></iframe>
-        </div>
+            <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==';">▶</button>
+            <iframe allowfullscreen src=""></iframe>
+          </div>
       </div>
     </div>
   </section>
@@ -150,7 +163,7 @@
     <div class="center" style="text-align: center;">
       <h2>Prislistor</h2>
       <p>Kontakta oss för mer detaljerad prisinformation och offert.</p>
-      <a href="#kontakt" class="cta">Kontakta oss för offert!</a>
+      <!-- <a href="#kontakt" class="cta">Kontakta oss för offert!</a> -->
       <div style="margin-top: 2rem;">
         <img src="https://placehold.co/600x400/EEE/31343C" alt="Prislista" style="max-width: 100%; height: auto;" />
       </div>
