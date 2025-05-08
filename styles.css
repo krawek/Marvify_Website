@@ -84,6 +84,7 @@ body {
   section {
     padding: 2rem 1rem;
     background: white;
+    scroll-margin-top: 100px;
     border-top: solid 1px #e4e4e4;
   }
 
