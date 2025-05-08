@@ -59,8 +59,9 @@
       </div>
       <div class="col">
         <div class="iframe-container">
-          <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==';">▶</button>
-          <iframe allowfullscreen src=""></iframe>
+            <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==';">▶</button>
+            <button class="expand-button" onclick="openIframeModal('https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==', this)">⛶</button>
+            <iframe allowfullscreen src="about:blank"></iframe>
         </div>
       </div>
     </div>
@@ -83,6 +84,13 @@
       </div>
     </div>
   </footer>
+  <div id="iframe-modal" class="iframe-modal">
+    <div class="iframe-modal-backdrop" onclick="closeIframeModal()"></div>
+    <div class="iframe-modal-content">
+      <button class="iframe-close-button" onclick="closeIframeModal()">×</button>
+      <iframe id="iframe-modal-frame" allowfullscreen src="about:blank"></iframe>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
