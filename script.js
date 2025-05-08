@@ -20,10 +20,23 @@ window.addEventListener('scroll', function () {
   
   // Open modal and stop the clicked iframe
   function openIframeModal(src, clickedButton) {
+    const isUserAgentMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    const isNarrowScreen = window.innerWidth <= 768;
+  
+    const isLikelyMobilePortrait =
+      (isUserAgentMobile || isTouchDevice) && isPortrait && isNarrowScreen;
+  
+    if (isLikelyMobilePortrait) {
+      window.open(src, '_blank');
+      return;
+    }
+  
+    // Otherwise, open the modal
     const modal = document.getElementById('iframe-modal');
     const iframe = document.getElementById('iframe-modal-frame');
   
-    // Stop background iframe
     const smallIframe = clickedButton.closest('.iframe-container').querySelector('iframe');
     if (smallIframe) {
       smallIframe.src = 'about:blank';
@@ -59,3 +72,14 @@ window.addEventListener('scroll', function () {
     });
   }
   
+  // Auto-close mobile nav on link click
+document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+
+    if (navbarToggler && navbarCollapse.classList.contains('show')) {
+      navbarToggler.click(); // Programmatically trigger collapse
+    }
+  });
+});
