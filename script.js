@@ -72,3 +72,14 @@ window.addEventListener('scroll', function () {
     });
   }
   
+  // Auto-close mobile nav on link click
+document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+
+    if (navbarToggler && navbarCollapse.classList.contains('show')) {
+      navbarToggler.click(); // Programmatically trigger collapse
+    }
+  });
+});
