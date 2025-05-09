@@ -360,7 +360,7 @@ img.slide-up {
 
 /* Start state: overlap by 50% */
 .separate-1 {
-  left: 25%;
+  left: 15%;
   z-index: 2;
 }
 
