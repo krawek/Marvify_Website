@@ -48,6 +48,7 @@ body {
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
+    margin-bottom: 8rem;
   }
 
   @media (max-width: 768px) {
@@ -114,8 +115,15 @@ body {
   }
 
   .color2 {
-      background: #44cbf4;
+    padding-top: 4rem;  /* or 3rem, depending on spacing needs */
+    padding-bottom: 4rem;
+    background: #44cbf4;
   }
+
+  .color2 h2,
+.color2 p {
+  color: white;
+}
 
   .center {
     max-width: 1000px;
@@ -538,4 +546,53 @@ html {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-top: 1px solid #ddd;
   }
+}
+
+.navbar.transparent .nav-link {
+  color: white !important;
+}
+
+.navbar.scrolled .nav-link {
+  color: black !important;
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+section h2 {
+  font-size: 32px;        /* larger main title */
+  font-weight: 700;       /* bold */
+  margin-bottom: 0.5rem;
+}
+
+section h3 {
+  font-size: 20px;        /* larger subtitle */
+  font-weight: 500;       /* semi-bold (adjust as needed) */
+  margin-bottom: 1rem;
+}
+
+section p {
+  margin-top: 1.5rem;   /* spacing above each paragraph */
+  margin-bottom: 1.5rem; /* spacing below each paragraph */
+  font-size: 20px;       /* optional: keep or adjust font size */
+  line-height: 1.2;      /* improves readability */
+}
+
+
+.hero-text h1 {
+  font-size: 72px;        /* Much larger */
+  font-weight: 800;       /* Bold */
+  color: white;           /* White text */
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* Optional: subtle glow for contrast */
+}
+
+.hero-text p {
+  font-size: 28px;        /* Larger subtitle */
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Optional */
 }

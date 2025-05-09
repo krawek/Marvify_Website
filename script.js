@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll("section");
+  const sections = document.querySelectorAll("section, .hero");
 
   function updateDimming() {
     const viewportHeight = window.innerHeight;
