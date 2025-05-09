@@ -199,3 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".hero");
+  const imageIndex = Math.floor(Math.random() * 3) + 1; // 1 to 3
+  hero.style.backgroundImage = `url('./${imageIndex}.jpg')`;
+});

@@ -36,7 +36,7 @@
             <li class="nav-item"><a class="nav-link" href="#testa">Testa</a></li>
             <li class="nav-item"><a class="nav-link" href="#priser">Priser</a></li>
             <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
-            <li class="nav-item"><a class="nav-link" href="en.html" title="Switch to English">EN</a>
+            <li class="nav-item"><a class="nav-link" href="under_construction.html" title="Switch to English">EN</a>
             <li class="nav-item"><a class="nav-link" href="" title="divider">|</a>
             <li class="nav-item"><a class="nav-link" href="under_construction.html">DOKUMENTATION</a></li>
             
@@ -86,9 +86,23 @@
           </div>
       <div class="col">
         <div class="iframe-container">
-            <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=d2VicGFnZV9kb25vdHJlbW92ZS9zdXNoaQ==';">▶</button>
-            <button class="expand-button" onclick="openIframeModal('https://v.marvify.io/?m=d2VicGFnZV9kb25vdHJlbW92ZS9zdXNoaQ==', this)">⛶</button>
-            <iframe allowfullscreen src="about:blank"></iframe>
+          <img class="iframe-preview" src="demo.png" alt="Preview" />
+          <button class="play-button" onclick="
+            this.style.display='none';
+            const container = this.parentElement;
+            const iframe = container.querySelector('iframe');
+            const preview = container.querySelector('.iframe-preview');
+            if (preview) preview.style.display = 'none';
+            if (iframe) {
+              iframe.style.display = 'block';
+              iframe.src = 'https://v.marvify.io/?m=d2VicGFnZV9kb25vdHJlbW92ZS9zdXNoaQ==';
+            }
+          ">▶</button>
+          <button class="expand-button" onclick="openIframeModal('https://v.marvify.io/?m=d2VicGFnZV9kb25vdHJlbW92ZS9zdXNoaQ==', this)">
+            <span class="expand-icon">⛶</span>
+          </button>
+          
+          <iframe allowfullscreen src="about:blank"></iframe>
         </div>
       </div>
     </div>
