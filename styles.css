@@ -42,11 +42,15 @@ body {
     position: relative;
     height: 85vh;
     min-height: 600px;
-    background: url('https://placehold.co/1560x708/EEE/31343C') top/cover no-repeat;
     background-color: #fff;
     display: table;
     width: 100%;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    margin-bottom: 8rem;
   }
+
   @media (max-width: 768px) {
     .hero {
       height: 45vh;
@@ -82,10 +86,28 @@ body {
   }
 
   section {
-    padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
     background: white;
     scroll-margin-top: 100px;
     border-top: solid 1px #e4e4e4;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 1rem 1rem 4rem 1rem; /* ⬅️ more bottom padding */
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 1);
+    opacity: var(--dim-opacity, 0);
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+    z-index: 10;
+  }
+  section.dimmed::before {
+    opacity: 1; /* fade in when dimmed */
   }
 
   .white {
@@ -93,8 +115,15 @@ body {
   }
 
   .color2 {
-      background: #44cbf4;
+    padding-top: 4rem;  /* or 3rem, depending on spacing needs */
+    padding-bottom: 4rem;
+    background: #44cbf4;
   }
+
+  .color2 h2,
+.color2 p {
+  color: white;
+}
 
   .center {
     max-width: 1000px;
@@ -114,6 +143,7 @@ body {
 
   .col {
     flex: 1 1 300px;
+    position: relative;
   }
 
   .col img, .col iframe {
@@ -153,7 +183,7 @@ body {
     aspect-ratio: 3 / 2;
     width: 100%;
     margin: 0 auto;
-    background: #ccc;
+    background: #fff;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -295,4 +325,274 @@ body {
     text-align: center;
     margin: 0.5rem 0;
   }
+
+  .slide-up {
+    opacity: 0;
+    transform: translateY(25%);
+    transition: opacity 0s ease-out, transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+    position: relative;
+    z-index: 0; /* ⬅️ behind the next section by default */
+  }
   
+  .slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 3; /* ⬅️ on top when animating in */
+  }
+  @media (max-width: 991.98px) { /* Matches Bootstrap's lg breakpoint */
+    .navbar .navbar-collapse.collapse.show {
+      background-color: white;
+      padding: 1rem; /* Optional: add padding for cleaner look */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: add soft shadow */
+    }
+  }
+img.slide-up {
+  width: 75%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  img.slide-up {
+    max-width: 250px; /* or adjust as needed */
+    width: 70%;       /* optional override to scale proportionally */
+  }
+}
+
+.separate-1 {
+  position: absolute;
+  top: 0;
+  max-width: 250px;
+  transition: transform 1.2s ease;
+}
+
+.separate-2 {
+  position: absolute;
+  top: 0;
+  max-width: 230px;
+  transition: transform 2.8s ease;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .separate-1 {
+    max-width: 180px; /* smaller for mobile portrait */
+  }
+
+  .separate-2 {
+    max-width: 165px; /* adjust proportionally */
+  }
+}
+
+/* Start state: overlap by 50% */
+.separate-1 {
+  left: 15%;
+  z-index: 2;
+}
+
+.separate-2 {
+  left: 0;
+  z-index: 1;
+}
+
+/* When section is active: spread apart */
+.section-active .separate-1 {
+  transform: translateX(40px);
+}
+
+.section-active .separate-2 {
+  transform: translateX(-30px);
+}
+
+.separate-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  aspect-ratio: 5 / 4;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 100%; /* Allow it to fill the col */
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  animation: bounce 2s infinite;
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 0.6s ease;
+}
+
+.scroll-indicator.stopped {
+  animation: none;
+  opacity: 0.3;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* The circular background */
+.scroll-indicator .circle-bg {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.08); /* adjust color/opacity as needed */
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+.slide-up.shadow-soft {
+  box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.1); /* left and bottom */
+}
+
+#kontakt {
+  scroll-margin-top: 100px; /* Adjust this to match your navbar height */
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .separate-1,
+  .separate-2 {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .section-active .separate-1 {
+    transform: translateX(-10%); /* subtle outward shift from center */
+  }
+
+  .section-active .separate-2 {
+    transform: translateX(-90%); /* subtle opposite shift from center */
+  }
+}
+
+.iframe-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  object-position: center;
+  pointer-events: none; /* Prevent it from blocking button clicks */
+}
+.expand-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: white;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 6px; */
+  /* padding: 0.2rem 0.5rem; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+  font-family: inherit;
+  z-index: 3;
+}
+
+.expand-button .expand-text {
+  font-size: 0.75rem;
+  line-height: 1;
+  transform: translateY(1px); /* adjust this if needed */
+}
+
+.expand-button .expand-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+@media (max-width: 991.98px) {
+  /* Hamburger button */
+  .navbar-toggler {
+    background-color: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  /* Expanded menu panel */
+  .navbar .navbar-collapse.collapse.show {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #ddd;
+  }
+}
+
+.navbar.transparent .nav-link {
+  color: white !important;
+}
+
+.navbar.scrolled .nav-link {
+  color: black !important;
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+section h2 {
+  font-size: 32px;        /* larger main title */
+  font-weight: 700;       /* bold */
+  margin-bottom: 0.5rem;
+}
+
+section h3 {
+  font-size: 20px;        /* larger subtitle */
+  font-weight: 500;       /* semi-bold (adjust as needed) */
+  margin-bottom: 1rem;
+}
+
+section p {
+  margin-top: 1.5rem;   /* spacing above each paragraph */
+  margin-bottom: 1.5rem; /* spacing below each paragraph */
+  font-size: 20px;       /* optional: keep or adjust font size */
+  line-height: 1.2;      /* improves readability */
+}
+
+
+.hero-text h1 {
+  font-size: 72px;        /* Much larger */
+  font-weight: 800;       /* Bold */
+  color: white;           /* White text */
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* Optional: subtle glow for contrast */
+}
+
+.hero-text p {
+  font-size: 28px;        /* Larger subtitle */
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Optional */
+}

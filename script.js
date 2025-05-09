@@ -83,3 +83,125 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slideElements = document.querySelectorAll(".slide-up");
+
+  const visibilityState = new WeakMap(); // To track visibility per element
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const wasVisible = visibilityState.get(entry.target) || false;
+
+      if (entry.intersectionRatio > 0.6 && !wasVisible) {
+        entry.target.classList.add("visible");
+        visibilityState.set(entry.target, true);
+      } else if (entry.intersectionRatio < 0.01 && wasVisible) {
+        entry.target.classList.remove("visible");
+        visibilityState.set(entry.target, false);
+      }
+    });
+  }, {
+    threshold: [0, 0.2, 0.6, 1],
+    rootMargin: "-80px 0px -80px 0px"
+  });
+
+  slideElements.forEach(el => observer.observe(el));
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section, .hero");
+
+  function updateDimming() {
+    const viewportHeight = window.innerHeight;
+    const viewportCenter = viewportHeight / 2;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+
+      // Only dim if section is above center (leaving upward)
+      if (sectionCenter < viewportCenter) {
+        const distance = viewportCenter - sectionCenter;
+        const maxDistance = viewportHeight * 0.8; // dim over longer range
+        const intensity = Math.min(distance / maxDistance, 1);
+        const eased = intensity ** 2; // smooth ease-in
+        const targetOpacity = eased * 0.15;
+        section.style.setProperty('--dim-opacity', targetOpacity.toFixed(3));
+      } else {
+        // Reset to fully lit when below center
+        section.style.setProperty('--dim-opacity', '0');
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateDimming);
+  window.addEventListener("resize", updateDimming);
+  updateDimming();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const targetSection = document.querySelector('#om .row.reverse').closest('section');
+
+  function updateSeparation() {
+    const rect = targetSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const sectionCenter = rect.top + rect.height / 2;
+    const viewportCenter = viewportHeight / 2;
+
+    const threshold = viewportHeight * 0.35;
+    const distance = Math.abs(viewportCenter - sectionCenter);
+
+    if (distance < threshold) {
+      targetSection.classList.add("section-active");
+    } else {
+      targetSection.classList.remove("section-active");
+    }
+  }
+
+  window.addEventListener("scroll", updateSeparation);
+  window.addEventListener("resize", updateSeparation);
+  updateSeparation();
+});
+
+window.addEventListener('scroll', function handleFirstScroll() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (indicator && !indicator.classList.contains('stopped')) {
+    indicator.classList.add('stopped');
+    window.removeEventListener('scroll', handleFirstScroll); // only run once
+  }
+});
+
+window.addEventListener('scroll', function handleScrollFade() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (!indicator || indicator.classList.contains('hidden')) return;
+
+  const rect = indicator.getBoundingClientRect();
+
+  // When the indicator's bottom crosses into the top of the viewport
+  if (rect.bottom <= 0) {
+    indicator.classList.add('hidden');
+    // Clean up listener to lock this change
+    window.removeEventListener('scroll', handleScrollFade);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollBtn = document.getElementById('scrollToOm');
+  const targetSection = document.querySelector('#om');
+
+  if (scrollBtn && targetSection) {
+    scrollBtn.addEventListener('click', () => {
+      scrollBtn.classList.add('stopped', 'hidden');
+      targetSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".hero");
+  const imageIndex = Math.floor(Math.random() * 3) + 1; // 1 to 3
+  hero.style.backgroundImage = `url('./${imageIndex}.jpg')`;
+});

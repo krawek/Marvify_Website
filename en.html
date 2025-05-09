@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foto-3D</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="navbar navbar-expand-lg transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="logo_website_small.webp" alt="Logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#om">FOTO-3D</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testa">TRY IT</a></li>
+            <li class="nav-item"><a class="nav-link" href="#priser">PRICING</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kontakt">CONTACT</a></li>
+            <li class="nav-item"><a class="nav-link" href="under_construction.html">DOCUMENTATION</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html" title="Byt till svenska">SV</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="hero-text">
+      <h1>MARVIFY</h1>
+      <p>marvify's Slogan</p>
+    </div>
+  </header>
+
+  <section id="om" class="white">
+    <div class="center row">
+      <div class="col">
+        <h1>FOTO-3D</h1>
+        <h2>We photograph your products in photorealistic 3D.</h2>
+        <p>Using the latest 3D technology, we have developed a cost-effective process where we create 3D representations of your products – with lighting and reflections embedded in the file for a fully photorealistic rendering. These files can be compressed to a size and performance level that works on regular mobile phones, without losing too much photorealism and fidelity.</p>
+        <!-- <a href="#kontakt" class="cta">Contact us!</a> -->
+      </div>
+      <div class="col">
+        <img src="https://placehold.co/600x400/EEE/31343C" alt="Demo" />
+      </div>
+    </div>
+  </section>
+
+  <section id="testa" class="color2">
+    <div class="center row reverse">
+      <div class="col">
+        <h2>Try it yourself!</h2>
+        <h3>Click and drag to rotate. Use the scroll wheel or pinch to zoom.</h3>
+        <p>The finished 3D product can, as shown here, be displayed directly in an iFrame, making it easy to integrate on your website. It can also be shared via a direct link, for example in email campaigns or pop-ups. We’re not a web design agency, but we can help with simple integrations and templates — for example, restaurant menus.</p>
+      </div>
+      <div class="col">
+        <div class="iframe-container">
+            <button class="play-button" onclick="this.style.display='none'; const iframe = this.parentElement.querySelector('iframe'); iframe.style.display='block'; iframe.src='https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==';">▶</button>
+            <button class="expand-button" onclick="openIframeModal('https://v.marvify.io/?m=Zm90by0zZC9wcmFsaW5odXNldC8wNA==', this)">⛶</button>
+            <iframe allowfullscreen src="about:blank"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="priser" class="white">
+    <div class="center centered-text">
+      <h2>Price Lists</h2>
+      <p>Contact us for more detailed pricing information and a quote.</p>
+      <img src="https://placehold.co/600x400/EEE/31343C" alt="Prislista" style="max-width: 100%; height: auto;" />
+    </div>
+  </section>
+
+  <footer id="kontakt">
+    <div class="center">
+      <h2>Contact us</h2>
+      <p>E-mail: info@marvify.se<br>Telephone: +46 12 345 678</p>
+      <div class="social">
+        <a href="/"><img src="m.webp?inline" alt="Logo" /></a>
+      </div>
+    </div>
+  </footer>
+  <div id="iframe-modal" class="iframe-modal">
+    <div class="iframe-modal-backdrop" onclick="closeIframeModal()"></div>
+    <div class="iframe-modal-content">
+      <button class="iframe-close-button" onclick="closeIframeModal()">×</button>
+      <iframe id="iframe-modal-frame" allowfullscreen src="about:blank"></iframe>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
