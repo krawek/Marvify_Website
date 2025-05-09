@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.intersectionRatio > 0.6 && !wasVisible) {
         entry.target.classList.add("visible");
         visibilityState.set(entry.target, true);
-      } else if (entry.intersectionRatio < 0.2 && wasVisible) {
+      } else if (entry.intersectionRatio < 0.01 && wasVisible) {
         entry.target.classList.remove("visible");
         visibilityState.set(entry.target, false);
       }

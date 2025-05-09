@@ -329,7 +329,13 @@ body {
     transform: translateY(0);
     z-index: 3; /* ⬅️ on top when animating in */
   }
-
+  @media (max-width: 991.98px) { /* Matches Bootstrap's lg breakpoint */
+    .navbar .navbar-collapse.collapse.show {
+      background-color: white;
+      padding: 1rem; /* Optional: add padding for cleaner look */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: add soft shadow */
+    }
+  }
 img.slide-up {
   width: 50%;
   max-width: 500px;
@@ -429,5 +435,29 @@ html {
   }
   50% {
     transform: translateX(-50%) translateY(10px);
+  }
+}
+
+.slide-up.shadow-soft {
+  box-shadow: -8px 8px 20px rgba(0, 0, 0, 0.1); /* left and bottom */
+}
+
+#kontakt {
+  scroll-margin-top: 100px; /* Adjust this to match your navbar height */
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .separate-1,
+  .separate-2 {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .section-active .separate-1 {
+    transform: translateX(-10%); /* subtle outward shift from center */
+  }
+
+  .section-active .separate-2 {
+    transform: translateX(-90%); /* subtle opposite shift from center */
   }
 }
