@@ -82,10 +82,14 @@ body {
   }
 
   section {
-    padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
     background: white;
     scroll-margin-top: 100px;
     border-top: solid 1px #e4e4e4;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 1rem 1rem 4rem 1rem; /* ⬅️ more bottom padding */
   }
 
   .white {
@@ -295,4 +299,26 @@ body {
     text-align: center;
     margin: 0.5rem 0;
   }
+
+  .slide-up {
+    opacity: 0;
+    transform: translateY(25%);
+    transition: opacity 0s ease-out, transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+    position: relative;
+    z-index: 0; /* ⬅️ behind the next section by default */
+  }
   
+  .slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 3; /* ⬅️ on top when animating in */
+  }
+
+img.slide-up {
+  width: 50%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

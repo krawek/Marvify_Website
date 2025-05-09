@@ -83,3 +83,29 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slideElements = document.querySelectorAll(".slide-up");
+
+  const visibilityState = new WeakMap(); // To track visibility per element
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const wasVisible = visibilityState.get(entry.target) || false;
+
+      if (entry.intersectionRatio > 0.6 && !wasVisible) {
+        entry.target.classList.add("visible");
+        visibilityState.set(entry.target, true);
+      } else if (entry.intersectionRatio < 0.2 && wasVisible) {
+        entry.target.classList.remove("visible");
+        visibilityState.set(entry.target, false);
+      }
+    });
+  }, {
+    threshold: [0, 0.2, 0.6, 1],
+    rootMargin: "-80px 0px -80px 0px"
+  });
+
+  slideElements.forEach(el => observer.observe(el));
+});
+
