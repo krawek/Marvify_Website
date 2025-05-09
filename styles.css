@@ -337,25 +337,42 @@ body {
     }
   }
 img.slide-up {
-  width: 50%;
+  width: 75%;
   max-width: 500px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
+@media (max-width: 768px) and (orientation: portrait) {
+  img.slide-up {
+    max-width: 250px; /* or adjust as needed */
+    width: 70%;       /* optional override to scale proportionally */
+  }
+}
+
 .separate-1 {
   position: absolute;
   top: 0;
-  max-width: 200px;
+  max-width: 250px;
   transition: transform 1.2s ease;
 }
 
 .separate-2 {
   position: absolute;
   top: 0;
-  max-width: 200px;
+  max-width: 230px;
   transition: transform 2.8s ease;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .separate-1 {
+    max-width: 180px; /* smaller for mobile portrait */
+  }
+
+  .separate-2 {
+    max-width: 165px; /* adjust proportionally */
+  }
 }
 
 /* Start state: overlap by 50% */
