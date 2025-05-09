@@ -338,12 +338,18 @@ img.slide-up {
   margin: 0 auto;
 }
 
-.separate-1,
-.separate-2 {
+.separate-1 {
   position: absolute;
   top: 0;
   max-width: 200px;
   transition: transform 1.2s ease;
+}
+
+.separate-2 {
+  position: absolute;
+  top: 0;
+  max-width: 200px;
+  transition: transform 2.8s ease;
 }
 
 /* Start state: overlap by 50% */
