@@ -376,3 +376,52 @@ img.slide-up {
   margin: 0 auto;
   height: 100%; /* Allow it to fill the col */
 }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  animation: bounce 2s infinite;
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 0.6s ease;
+}
+
+.scroll-indicator.stopped {
+  animation: none;
+  opacity: 0.3;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* The circular background */
+.scroll-indicator .circle-bg {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.08); /* adjust color/opacity as needed */
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}

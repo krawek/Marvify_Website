@@ -163,3 +163,39 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", updateSeparation);
   updateSeparation();
 });
+
+window.addEventListener('scroll', function handleFirstScroll() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (indicator && !indicator.classList.contains('stopped')) {
+    indicator.classList.add('stopped');
+    window.removeEventListener('scroll', handleFirstScroll); // only run once
+  }
+});
+
+window.addEventListener('scroll', function handleScrollFade() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (!indicator || indicator.classList.contains('hidden')) return;
+
+  const rect = indicator.getBoundingClientRect();
+
+  // When the indicator's bottom crosses into the top of the viewport
+  if (rect.bottom <= 0) {
+    indicator.classList.add('hidden');
+    // Clean up listener to lock this change
+    window.removeEventListener('scroll', handleScrollFade);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollBtn = document.getElementById('scrollToOm');
+  const targetSection = document.querySelector('#om');
+
+  if (scrollBtn && targetSection) {
+    scrollBtn.addEventListener('click', () => {
+      scrollBtn.classList.add('stopped', 'hidden');
+      targetSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  }
+});
