@@ -109,3 +109,34 @@ document.addEventListener("DOMContentLoaded", () => {
   slideElements.forEach(el => observer.observe(el));
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section");
+
+  function updateDimming() {
+    const viewportHeight = window.innerHeight;
+    const viewportCenter = viewportHeight / 2;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+
+      // Only dim if section is above center (leaving upward)
+      if (sectionCenter < viewportCenter) {
+        const distance = viewportCenter - sectionCenter;
+        const maxDistance = viewportHeight * 0.8; // dim over longer range
+        const intensity = Math.min(distance / maxDistance, 1);
+        const eased = intensity ** 2; // smooth ease-in
+        const targetOpacity = eased * 0.15;
+        section.style.setProperty('--dim-opacity', targetOpacity.toFixed(3));
+      } else {
+        // Reset to fully lit when below center
+        section.style.setProperty('--dim-opacity', '0');
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateDimming);
+  window.addEventListener("resize", updateDimming);
+  updateDimming();
+});
+

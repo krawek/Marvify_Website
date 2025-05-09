@@ -92,6 +92,20 @@ body {
     padding: 1rem 1rem 4rem 1rem; /* ⬅️ more bottom padding */
   }
 
+  section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 1);
+    opacity: var(--dim-opacity, 0);
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+    z-index: 10;
+  }
+  section.dimmed::before {
+    opacity: 1; /* fade in when dimmed */
+  }
+
   .white {
     background: white;
   }
