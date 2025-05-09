@@ -140,3 +140,26 @@ document.addEventListener("DOMContentLoaded", () => {
   updateDimming();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const targetSection = document.querySelector('#om .row.reverse').closest('section');
+
+  function updateSeparation() {
+    const rect = targetSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const sectionCenter = rect.top + rect.height / 2;
+    const viewportCenter = viewportHeight / 2;
+
+    const threshold = viewportHeight * 0.35;
+    const distance = Math.abs(viewportCenter - sectionCenter);
+
+    if (distance < threshold) {
+      targetSection.classList.add("section-active");
+    } else {
+      targetSection.classList.remove("section-active");
+    }
+  }
+
+  window.addEventListener("scroll", updateSeparation);
+  window.addEventListener("resize", updateSeparation);
+  updateSeparation();
+});
